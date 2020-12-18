@@ -51,7 +51,6 @@ print_options(REPOSITORY  spdlog)
 #endif()
 
 CPMFindPackage(NAME spdlog
-               DEPENDS fmt
                GITHUB_REPOSITORY ${SPDLOG_REPOSITORY}
                GIT_TAG ${SPDLOG_VERSION}
                FETCHCONTENT_UPDATES_DISCONNECTED ${IS_OFFLINE}
