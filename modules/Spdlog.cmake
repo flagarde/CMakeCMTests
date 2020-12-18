@@ -8,7 +8,7 @@ if(NOT DEFINED SPDLOG_REPOSITORY)
 endif()
 
 if(NOT DEFINED SPDLOG_VERSION)
-  set(SPDLOG_VERSION "v1.8.2")
+  set(SPDLOG_VERSION "1.8.2")
 endif()
 
 # misc tweakme options
