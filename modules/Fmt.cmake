@@ -29,5 +29,6 @@ CPMFindPackage(NAME fmt
                GITHUB_REPOSITORY ${FMT_REPOSITORY}
                GIT_TAG ${FMT_VERSION}
                FETCHCONTENT_UPDATES_DISCONNECTED ${IS_OFFLINE}
+               GIT_PROGRESS TRUE
                OPTIONS ${FMT_OPTIONS}
               )
