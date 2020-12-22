@@ -3,6 +3,11 @@ include_guard(GLOBAL)
 include(CPM)
 cpm()
 
+if(DEFINED ENV{LCIO})
+  set(CMAKE_PREFIX_PATH "$ENV{LCIO};${CMAKE_PREFIX_PATH}" CACHE PATH "CMAKE_PREFIX_PATH" FORCE)
+  message(INFO "LCIO environment found $ENV{LCIO}")
+endif()
+
 if(NOT DEFINED LCIO_REPOSITORY)
   set(LCIO_REPOSITORY "iLCSoft/LCIO")
 endif()
