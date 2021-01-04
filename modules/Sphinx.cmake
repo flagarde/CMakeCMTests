@@ -1,0 +1,26 @@
+include(Messages)
+
+if(NOT DEFINED SPHINX_VERSION)
+  set(SPHINX_VERSION "3.4.1" CACHE INTERNAL "Sphinx version.")
+endif()
+
+find_package(Sphinx ${SPHINX_VERSION} EXACT QUIET)
+
+if(SPHINX_FOUND)
+  message(NOTE "Found sphinx-apidoc : ${SPHINX_APIDOC} (found version \"${SPHINX_VERSION_FOUND}\")")
+  message(NOTE "Found sphinx-autogen : ${SPHINX_AUTOGEN} (found version \"${SPHINX_VERSION_FOUND}\")")
+  message(NOTE "Found sphinx-build : ${SPHINX_BUILD} (found version \"${SPHINX_VERSION_FOUND}\")")
+  message(NOTE "Found sphinx-quickstart : ${SPHINX_QUICKSTART} (found version \"${SPHINX_VERSION_FOUND}\")")
+else()
+  include(Pip)
+  message(NOTE "Installing sphinx ${SPHINX_VERSION}")
+  execute_process(COMMAND ${PIP_EXECUTABLE} "install" "Sphinx==${SPHINX_VERSION}" "--target=${PIP_PACKAGES_PATH}" "--upgrade")
+  find_package(Sphinx ${SPHINX_VERSION} QUIET)
+  if(SPHINX_FOUND)
+    message(NOTE "Found sphinx-apidoc : ${SPHINX_APIDOC} (found version \"${SPHINX_VERSION_FOUND}\")")
+    message(NOTE "Found sphinx-autogen : ${SPHINX_AUTOGEN} (found version \"${SPHINX_VERSION_FOUND}\")")
+    message(NOTE "Found sphinx-build : ${SPHINX_BUILD} (found version \"${SPHINX_VERSION_FOUND}\")")
+    message(NOTE "Found sphinx-quickstart : ${SPHINX_QUICKSTART} (found version \"${SPHINX_VERSION_FOUND}\")")
+  endif()
+endif()
+

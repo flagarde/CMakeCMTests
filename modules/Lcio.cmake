@@ -1,4 +1,4 @@
-include_guard(GLOBAL)
+#include_guard(GLOBAL)
 
 include(CPM)
 cpm()
@@ -35,3 +35,11 @@ CPMFindPackage(NAME lcio
                FETCHCONTENT_UPDATES_DISCONNECTED ${IS_OFFLINE}
                OPTIONS ${LCIO_OPTIONS}
               )
+
+if (lcio_ADDED)
+  # compile with C++17
+  target_include_directories(lcio INTERFACE "${lcio_SOURCE_DIR}/src/cpp/include/")
+  message(STATUS "************** ${lcio_SOURCE_DIR}/src/cpp/include/")
+  target_include_directories(lcio INTERFACE "${lcio_SOURCE_DIR}/src/cpp/include/pre-generated")
+  #set_target_properties(benchmark PROPERTIES CXX_STANDARD 17)
+endif()
